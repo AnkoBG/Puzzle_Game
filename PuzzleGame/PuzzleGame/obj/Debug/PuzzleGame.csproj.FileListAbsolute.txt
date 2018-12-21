@@ -1,0 +1,12 @@
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGame.exe.config
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGame.exe
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGame.pdb
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGameLibrary.dll
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGameLibrary.pdb
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csprojAssemblyReference.cache
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.Properties.Resources.resources
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.GenerateResource.cache
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.CoreCompileInputs.cache
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.CopyComplete
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.exe
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.pdb

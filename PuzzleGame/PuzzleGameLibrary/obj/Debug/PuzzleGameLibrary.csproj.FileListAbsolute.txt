@@ -1,0 +1,6 @@
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGameLibrary\bin\Debug\PuzzleGameLibrary.dll
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGameLibrary\bin\Debug\PuzzleGameLibrary.pdb
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGameLibrary\obj\Debug\PuzzleGameLibrary.csprojAssemblyReference.cache
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGameLibrary\obj\Debug\PuzzleGameLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGameLibrary\obj\Debug\PuzzleGameLibrary.dll
+C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGameLibrary\obj\Debug\PuzzleGameLibrary.pdb
