@@ -20,7 +20,12 @@ namespace PuzzleGame
         {
             InitializeComponent();
             renderer = new FormsRenderer(CreateGraphics());
-            grid = new Grid(renderer, 600, new Vector2(8, 4), Color.DarkGray);
+            grid = new Grid(renderer, 800, new Vector2(8, 4), Color.Red);
+            Figure fig1 = new Figure(new Vector2(0, 0), new Vector2(2, 3), new bool[,] { { true, true, true }, { false, false, true }}, Color.DarkGray);
+            fig1.Rotate(true);
+            fig1.Rotate(true);
+            fig1.Rotate(true);
+            fig1.Rotate(true);
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
