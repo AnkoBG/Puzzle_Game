@@ -10,3 +10,16 @@ C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\Puzz
 C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.CopyComplete
 C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.exe
 C:\Users\User3\Documents\GitHub\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.pdb
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGame.exe.config
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGame.exe
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGame.pdb
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGameLibrary.dll
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\bin\Debug\PuzzleGameLibrary.pdb
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csprojAssemblyReference.cache
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.Properties.Resources.resources
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.GenerateResource.cache
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.CoreCompileInputs.cache
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.csproj.CopyComplete
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.exe
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.pdb
+G:\source\repos\PuzzleGame\Puzzle_Game\PuzzleGame\PuzzleGame\obj\Debug\PuzzleGame.Form1.resources
