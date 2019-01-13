@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace PuzzleGameLibrary
 {
-    public class Cell
+    internal class Cell
     {
         //TODO
         
@@ -17,11 +17,10 @@ namespace PuzzleGameLibrary
         public Color Color { get; private set; }
         public bool IsEmpty { get; private set; }
 
-        public Cell(Vector2 position, int cellSize, Color color, bool isEmpty = false)
+        public Cell(Vector2 position, int cellSize, bool isEmpty = false)
         {
             Position = position;
             Size = cellSize;
-            Color = color;
             IsEmpty = isEmpty;
         }
 

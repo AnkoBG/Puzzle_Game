@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace PuzzleGameLibrary
 {
-    public class Figure
+    internal class Figure : IDrawable
     {
         //TODO
         public Vector2 Position { get; private set; }
@@ -17,7 +17,7 @@ namespace PuzzleGameLibrary
         public Color figureColor;
         public Cell[,] cells;
 
-        public Figure(Vector2 _position,Vector2 _size, Cell[,] _cells, Color color)
+        public Figure(Vector2 _position, Cell[,] _cells, Color color)
         {
             Position = _position;
             Size = new Vector2(_cells.GetLength(0), _cells.GetLength(1));
@@ -30,7 +30,7 @@ namespace PuzzleGameLibrary
             foreach (Cell cell in cells)
             {
                 if(!cell.IsEmpty)
-                    renderer.DrawRectangle(new Rectangle(Position + cell.Position * cell.Size, new Vector2(cell.Size, cell.Size)), cell.Color, 3, true);
+                    renderer.DrawRectangle(new Rectangle(Position + cell.Position * cell.Size, new Vector2(cell.Size, cell.Size)), figureColor, 10, true);
             }
         }
 
@@ -48,28 +48,42 @@ namespace PuzzleGameLibrary
             return false;
         }
 
-        public void Rotate(bool right)
+        public void Rotate(Vector2 mousePos)
         {
-            Cell[,] newCells = new Cell[Size.Y, Size.X];
-            Vector2 newSize = new Vector2(Size.Y, Size.X);
-            
-            if (right == true)
+            if (IsInside(mousePos))
             {
-                //TODO: Fix right rotate
-            }
-            else
-            {
+                Cell[,] newCells = new Cell[Size.Y, Size.X];
+                Vector2 newSize = new Vector2(Size.Y, Size.X);
+                
                 for (int j = 0; j < Size.Y; j++)
                 {
                     for (int i = 0; i < Size.X; i++)
                     {
-                        newCells[j, newCells.GetLength(1) - 1 - i] = new Cell(new Vector2(j, newCells.GetLength(1) - 1 - i), cells[i, j].Size, figureColor, cells[i, j].IsEmpty);
+                        newCells[j, newCells.GetLength(1) - 1 - i] = new Cell(new Vector2(j, newCells.GetLength(1) - 1 - i), cells[i, j].Size, cells[i, j].IsEmpty);
                     }
                 }
+
+                Size = newSize;
+                cells = newCells;
             }
-            Size = newSize;
-            cells = newCells;
+            
         }
 
+        public void Flip(Vector2 mousePos)
+        {
+            if (IsInside(mousePos))
+            {
+                Cell[,] newCells = new Cell[Size.X, Size.Y];
+
+                for (int i = 0; i < Size.X; i++)
+                {
+                    for (int j = 0; j < Size.Y; j++)
+                    {
+                        newCells[i, newCells.GetLength(0) - 1 - j] = new Cell(new Vector2(i, newCells.GetLength(0) - 1 - j), cells[i, j].Size, cells[i, j].IsEmpty);
+                    }
+                }
+                cells = newCells;
+            }
+        }
     }
 }

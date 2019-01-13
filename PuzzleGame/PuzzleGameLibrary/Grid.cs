@@ -15,13 +15,13 @@ namespace PuzzleGameLibrary
         public int Interval { get; private set; }
         Color gridGolor;
 
-        public Grid(IRenderer renderer, int width, Vector2 _cellCount, Color _gridColor)
+        public Grid(IRenderer renderer, Vector2 Size, Vector2 _cellCount, Color _gridColor)
         {
             cellCount = _cellCount;
-            Interval = width / cellCount.X;
-            GridSize = new Vector2(cellCount.X * Interval, cellCount.Y * Interval);
             gridGolor = _gridColor;
-            Draw(renderer);
+            GridSize = new Vector2((int)(Size.X * 3f / 4), Size.Y);
+            Interval = GridSize.X / cellCount.X;
+
         }
 
         public void Draw(IRenderer renderer)

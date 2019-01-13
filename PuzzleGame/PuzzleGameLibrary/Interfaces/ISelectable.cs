@@ -8,6 +8,6 @@ namespace PuzzleGameLibrary.Interfaces
 {
     public interface ISelectable
     {
-        //TODO
+
     }
 }

@@ -15,29 +15,30 @@ namespace PuzzleGame
     {
         FormsRenderer renderer;
         Grid grid;
-        Figure fig1;
+        Scene scene;
         PuzzleGameLibrary.Rectangle background = new PuzzleGameLibrary.Rectangle(new Vector2(0, 0), new Vector2(2000, 2000));
+
 
         public Form1()
         {
             InitializeComponent();
             renderer = new FormsRenderer(CreateGraphics());
-            grid = new Grid(renderer, 800, new Vector2(8, 4), Color.Red);
-            fig1 = new Figure(new Vector2(0, 0), new Vector2(2, 3),
-                new Cell[,] { 
-                { new Cell(new Vector2(0,0),grid.Interval,Color.Black), new Cell(new Vector2(0, 1), grid.Interval, Color.Black), new Cell(new Vector2(0, 2), grid.Interval, Color.Black) },
-                { new Cell(new Vector2(1,0),grid.Interval,Color.Black, true), new Cell(new Vector2(1,1),grid.Interval,Color.Black, true), new Cell(new Vector2(1,2),grid.Interval,Color.Black) }
-                }, Color.DarkGray);
-            
+            grid = new Grid(renderer, new Vector2(Size.Width, Size.Height), new Vector2(6, 3), Color.Red);
+            scene = new Scene(grid,renderer);
+            //fig1 = new Figure(new Vector2(grid.Interval*5, 0),
+            //    new Cell[,] { 
+            //   { new Cell(new Vector2(0,0),grid.Interval), new Cell(new Vector2(1, 0), grid.Interval),new Cell(new Vector2(2, 0), grid.Interval) },
+            //    { new Cell(new Vector2(0,1),grid.Interval, true), new Cell(new Vector2(1,1),grid.Interval, true),new Cell(new Vector2(2,1),grid.Interval) },
+            //    { new Cell(new Vector2(0,2),grid.Interval, true), new Cell(new Vector2(1,2),grid.Interval, true),new Cell(new Vector2(2,2),grid.Interval) }
+            //    }, Color.DarkGray);
+
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            grid.Draw(renderer);
-
-            fig1.Draw(renderer);
+            scene.Draw();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,15 +48,6 @@ namespace PuzzleGame
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (fig1.IsInside(new Vector2(e.Location.X, e.Location.Y)))
-            {
-                fig1.Rotate(false);
-
-                renderer.DrawRectangle(background, Color.White, 3, true);
-                grid.Draw(renderer);
-
-                fig1.Draw(renderer);
-            }
         }
     }
 }
