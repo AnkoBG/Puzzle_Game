@@ -15,7 +15,7 @@ namespace PuzzleGame
         {
             InitializeComponent();
             renderer = new FormsRenderer(CreateGraphics());
-            scene = new Scene(levelPath, renderer);
+            scene = new Scene(levelPath, new Vector2(Width, Height), renderer);
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)

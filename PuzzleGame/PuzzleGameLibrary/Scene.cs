@@ -31,9 +31,9 @@ namespace PuzzleGameLibrary
         public Grid Grid { get; private set; }
         public Grid RightGrid { get; private set; }
 
-        Rectangle background = new Rectangle(new Vector2(0, 0), new Vector2(2000, 2000));
+        Rectangle background;
 
-        public Scene(string levelPath, IRenderer renderer)
+        public Scene(string levelPath, Vector2 windowSize, IRenderer renderer)
         {
             Renderer = renderer;
             Level = new Level(levelPath);
@@ -42,6 +42,7 @@ namespace PuzzleGameLibrary
             placedFigures = Level.placedFigures;
             storedFigures = Level.storedFigures;
             selectedFigure = storedFigures[0];
+            background = new Rectangle(new Vector2(0, 0), windowSize);
         }
 
         public void KeyEvent(Key key, Vector2 mousePos)
@@ -208,11 +209,6 @@ namespace PuzzleGameLibrary
             {
                 placedFigures[i].Draw(Renderer);
             }
-
-            //foreach (Figure fig in placedFigures)
-            //{
-            //    fig.Draw(Renderer);
-            //}
             if(storedFigures.Count > 0)
             {
                 storedFigures[shownFigureIndex].Draw(Renderer);
