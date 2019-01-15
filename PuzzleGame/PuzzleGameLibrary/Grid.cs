@@ -16,9 +16,9 @@ namespace PuzzleGameLibrary
         public int Interval { get; private set; }
         public bool Right { get; private set; }
         public Vector2 cellCount;
-        Color gridGolor;
+        public Color gridGolor;
 
-        public Grid(IRenderer renderer, Vector2 Size, Vector2 _cellCount, Color _gridColor, bool right = false, int interval = 0)
+        public Grid(Vector2 Size, Vector2 _cellCount, Color _gridColor, bool right = false, int interval = 0)
         {
 
             cellCount = _cellCount;

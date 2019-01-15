@@ -89,9 +89,10 @@ namespace PuzzleGameLibrary
             }
         }
 
-        public void SnapToGrid(Grid grid)
+        public Figure SnapToGrid(Grid grid)
         {
             Position = Position - new Vector2(Position.X % grid.Interval, Position.Y % grid.Interval);
+            return this;
         }
 
         public bool CanPlace(Grid grid, List<Figure> placedFigures)

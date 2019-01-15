@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PuzzleGameLibrary;
 
@@ -14,40 +8,14 @@ namespace PuzzleGame
     public partial class Game : Form
     {
         FormsRenderer renderer;
-        Grid grid;
-        Grid rightGrid;
         Scene scene;
         PuzzleGameLibrary.Rectangle background = new PuzzleGameLibrary.Rectangle(new Vector2(0, 0), new Vector2(2000, 2000));
-        Menu mainMenu;
-        
 
-        public Game(Menu _mainMenu)
-        {
-            //To be used when creating custom levels, currently unusable
-            InitializeComponent();
-            mainMenu = _mainMenu;
-            renderer = new FormsRenderer(CreateGraphics());
-
-            grid = new Grid(renderer, new Vector2(Width, Height), new Vector2(11, 5), Color.LightGray);
-            rightGrid = new Grid(renderer, new Vector2(Width, Height), new Vector2(4, 4), Color.LightGray, true, grid.Interval);
-
-            List<Figure> pf = new List<Figure>(0);
-            List<Figure> sf = new List<Figure>(0);
-
-            Level level = new Level("Master_1.bin");
-            scene = new Scene(level, renderer);
-            
-        }
-
-        public Game(Menu _mainMenu, string levelName)
+        public Game(string levelPath)
         {
             InitializeComponent();
-            mainMenu = _mainMenu;
             renderer = new FormsRenderer(CreateGraphics());
-            grid = new Grid(renderer, new Vector2(Width, Height), new Vector2(11, 5), Color.Red);
-            rightGrid = new Grid(renderer, new Vector2(Width, Height), new Vector2(4, 4), Color.Green, true, grid.Interval);
-            Level level = new Level(levelName);
-            scene = new Scene(level, renderer);
+            scene = new Scene(levelPath, renderer);
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
@@ -73,9 +41,9 @@ namespace PuzzleGame
             }
             if(scene.gameWon)
             {
-                WinScreen win = new WinScreen(mainMenu);
+                WinScreen win = new WinScreen();
                 win.Show();
-                Close();
+                Hide();
             }
         }
 
@@ -107,6 +75,12 @@ namespace PuzzleGame
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             scene.MouseMoveEvent(new Vector2(e.X, e.Y));
+        }
+
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing)
+                Application.Exit();
         }
     }
 }

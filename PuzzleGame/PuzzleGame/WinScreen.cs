@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PuzzleGame
 {
     public partial class WinScreen : Form
     {
-        Menu mainMenu;
-        public WinScreen(Menu _mainMenu)
+        public WinScreen()
         {
             InitializeComponent();
-            mainMenu = _mainMenu;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,5 +20,10 @@ namespace PuzzleGame
             Application.Restart();
         }
 
+        private void WinScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+                Application.Exit();
+        }
     }
 }

@@ -46,7 +46,6 @@
             this.label1.Size = new System.Drawing.Size(167, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "How to play";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -54,7 +53,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(11, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(614, 120);
+            this.label2.Size = new System.Drawing.Size(568, 140);
             this.label2.TabIndex = 1;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -63,7 +62,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label5.Location = new System.Drawing.Point(246, 206);
+            this.label5.Location = new System.Drawing.Point(250, 219);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 31);
             this.label5.TabIndex = 4;
@@ -73,12 +72,13 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(11, 254);
+            this.label6.Location = new System.Drawing.Point(12, 264);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(427, 140);
             this.label6.TabIndex = 5;
             this.label6.Text = "R - Rotate the piece on the right or the one you are holding.\r\n\r\nF - Flip the pie" +
-    "ce horizontally.\r\n\r\nA, D - Cycle trough all the pieces on the right.\r\n\r\n.";
+    "ce horizontally.\r\n\r\nA, D - Cycle trough all the pieces on the right.\r\n\r\nF5 - Sav" +
+    "e current progress.";
             // 
             // button2
             // 

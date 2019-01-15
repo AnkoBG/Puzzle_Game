@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label2.Text" xml:space="preserve">
-    <value>1. Choose a challenge. Pieces will be placed on the board and will not be able to move.
+    <value>1. Choose a challenge. Pieces will be placed on the board and will not be able to
+    be moved.
     You will recognise them by the black borders.
 
 2. Try to fill the empty spaces with all the remaining puzzle pieces on the right.

@@ -15,47 +15,32 @@ namespace PuzzleGameLibrary
 
     public class Scene
     {
-        Level level;
+        internal Level Level { get; private set; }
         public bool gameWon = false;
 
         List<Figure> placedFigures = new List<Figure>(0);
         List<Figure> storedFigures = new List<Figure>(0);
-        int storedFigsIndex = 0;
+        int shownFigureIndex = 0;
 
         Figure selectedFigure = null;
         Figure draggedFigure = null;
         Vector2 dragOffset = null;
 
-        IRenderer renderer;
+        public IRenderer Renderer { get; private set; }
 
-        Grid grid;
-        Grid rightGrid;
+        public Grid Grid { get; private set; }
+        public Grid RightGrid { get; private set; }
 
         Rectangle background = new Rectangle(new Vector2(0, 0), new Vector2(2000, 2000));
 
-        public Scene(Level _level, IRenderer _renderer)
+        public Scene(string levelPath, IRenderer renderer)
         {
-            renderer = _renderer;
-            level = _level;
-            grid = level.Grid;
-            rightGrid = level.RightGrid;
-            placedFigures = level.placedFigures;
-            storedFigures = level.storedFigures;
-            foreach(Figure fig in storedFigures)
-            {
-                fig.Position = rightGrid.Position;
-            }
-            selectedFigure = storedFigures[0];
-        }
-
-        public Scene(string levelPath, IRenderer _renderer)
-        {
-            renderer = _renderer;
-            level = new Level(levelPath);
-            grid = level.Grid;
-            rightGrid = level.RightGrid;
-            placedFigures = level.placedFigures;
-            storedFigures = level.storedFigures;
+            Renderer = renderer;
+            Level = new Level(levelPath);
+            Grid = Level.Grid;
+            RightGrid = Level.RightGrid;
+            placedFigures = Level.placedFigures;
+            storedFigures = Level.storedFigures;
             selectedFigure = storedFigures[0];
         }
 
@@ -80,30 +65,29 @@ namespace PuzzleGameLibrary
                 case Key.A:
                     if (storedFigures.Count > 1)
                     {
-                        if(storedFigsIndex > 0)
-                            storedFigsIndex--;
+                        if(shownFigureIndex > 0)
+                            shownFigureIndex--;
                         else
-                            storedFigsIndex = storedFigures.Count - 1;
+                            shownFigureIndex = storedFigures.Count - 1;
                         if(draggedFigure == null)
-                            selectedFigure = storedFigures[storedFigsIndex];
+                            selectedFigure = storedFigures[shownFigureIndex];
                         Draw();
                     }
                     break;
                 case Key.D:
                     if (storedFigures.Count > 1)
                     {
-                        if (storedFigsIndex < storedFigures.Count - 1)
-                            storedFigsIndex++;
+                        if (shownFigureIndex < storedFigures.Count - 1)
+                            shownFigureIndex++;
                         else
-                            storedFigsIndex = 0;
+                            shownFigureIndex = 0;
                         if (draggedFigure == null)
-                            selectedFigure = storedFigures[storedFigsIndex];
+                            selectedFigure = storedFigures[shownFigureIndex];
                         Draw();
                     }
                     break;
-                case Key.F5:
-                    //Meant for Continue function, currently overwrites level savefile
-                    level.SerializeLevel();
+                case Key.F5:  //Meant for Continue function, currently overwrites current level savefile
+                    Level.SerializeLevel();
                     break;
                 default:
                     break;
@@ -120,44 +104,37 @@ namespace PuzzleGameLibrary
                 case MouseKey.Left:
                     if (draggedFigure == null)
                     {
-                        if (mousePos.X >= rightGrid.Position.X && mousePos.Y <= rightGrid.GridSize.Y)
+                        if (mousePos.X >= RightGrid.Position.X && mousePos.Y <= RightGrid.GridSize.Y && storedFigures.Count > 0)
                         {
-                            if(storedFigures.Count > 0)
+                            if (storedFigures[shownFigureIndex].IsInside(mousePos))
                             {
-                                if (storedFigures[storedFigsIndex].IsInside(mousePos))
-                                {
-                                    draggedFigure = storedFigures[storedFigsIndex];
-                                    selectedFigure = draggedFigure;
-                                    dragOffset = mousePos - draggedFigure.Position;
-                                }
-                                storedFigures.Remove(draggedFigure);
-                                storedFigsIndex = 0;
+                                draggedFigure = storedFigures[shownFigureIndex];
+                                selectedFigure = draggedFigure;
+                                dragOffset = mousePos - draggedFigure.Position;
                             }
+                            storedFigures.Remove(draggedFigure);
+                            shownFigureIndex = 0;
                         }
-                        else if (mousePos.X <= grid.GridSize.X && mousePos.Y <= grid.GridSize.Y)
+                        else if (mousePos.X <= Grid.GridSize.X && mousePos.Y <= Grid.GridSize.Y && placedFigures.Count > 0)
                         {
-                            if (placedFigures.Count > 0)
+                            foreach(Figure fig in placedFigures)
                             {
-                                foreach(Figure fig in placedFigures)
+                                if (fig.IsInside(mousePos) && !fig.isStatic)
                                 {
-                                    if (fig.IsInside(mousePos) && !fig.isStatic)
-                                    {
-                                        draggedFigure = fig;
-                                        selectedFigure = fig;
-                                        dragOffset = mousePos - draggedFigure.Position;
-                                        break;
-                                    }
+                                    draggedFigure = fig;
+                                    selectedFigure = fig;
+                                    dragOffset = mousePos - draggedFigure.Position;
+                                    break;
                                 }
-                                placedFigures.Remove(draggedFigure);
                             }
+                            placedFigures.Remove(draggedFigure);
                         }
                     }
                     else
                     {
-                        if(mousePos.X <= grid.GridSize.X + draggedFigure.Size.X * grid.Interval && mousePos.Y <= grid.GridSize.Y + draggedFigure.Size.Y * grid.Interval)
+                        if(mousePos.X <= Grid.GridSize.X + draggedFigure.Size.X * Grid.Interval && mousePos.Y <= Grid.GridSize.Y + draggedFigure.Size.Y * Grid.Interval)
                         {
-                            draggedFigure.SnapToGrid(grid);
-                            if (draggedFigure.CanPlace(grid, placedFigures))
+                            if (draggedFigure.SnapToGrid(Grid).CanPlace(Grid, placedFigures))
                             {
                                 placedFigures.Add(draggedFigure);
                                 if (storedFigures.Count > 0)
@@ -176,15 +153,15 @@ namespace PuzzleGameLibrary
                 case MouseKey.Right:
                     if(draggedFigure != null)
                     {
-                        draggedFigure.Position = rightGrid.Position;
+                        draggedFigure.Position = RightGrid.Position;
                         storedFigures.Insert(0, draggedFigure);
                         draggedFigure = null;
-                        storedFigsIndex = 0;
-                        selectedFigure = storedFigures[storedFigsIndex];
+                        shownFigureIndex = 0;
+                        selectedFigure = storedFigures[shownFigureIndex];
 
                         Draw();
                     }
-                    else if (mousePos.X <= grid.GridSize.X && mousePos.Y <= grid.GridSize.Y)
+                    else if (mousePos.X <= Grid.GridSize.X && mousePos.Y <= Grid.GridSize.Y)
                     {
                         Figure temp = null;
                         foreach(Figure fig in placedFigures)
@@ -198,10 +175,10 @@ namespace PuzzleGameLibrary
                         if(temp != null)
                         {
                             placedFigures.Remove(temp);
-                            temp.Position = rightGrid.Position;
+                            temp.Position = RightGrid.Position;
                             storedFigures.Insert(0, temp);
-                            storedFigsIndex = 0;
-                            selectedFigure = storedFigures[storedFigsIndex];
+                            shownFigureIndex = 0;
+                            selectedFigure = storedFigures[shownFigureIndex];
 
                             Draw();
                         }
@@ -223,20 +200,25 @@ namespace PuzzleGameLibrary
 
         public void Draw()
         {
-            renderer.DrawRectangle(background, Color.White, 3, true);
-            grid.Draw(renderer);
-            rightGrid.Draw(renderer);
+            Renderer.DrawRectangle(background, Color.White, 3, true);
+            Grid.Draw(Renderer);
+            RightGrid.Draw(Renderer);
 
-            foreach (Figure fig in placedFigures)
+            for (int i = placedFigures.Count - 1; i >= 0; i--)
             {
-                fig.Draw(renderer);
+                placedFigures[i].Draw(Renderer);
             }
+
+            //foreach (Figure fig in placedFigures)
+            //{
+            //    fig.Draw(Renderer);
+            //}
             if(storedFigures.Count > 0)
             {
-                storedFigures[storedFigsIndex].Draw(renderer);
+                storedFigures[shownFigureIndex].Draw(Renderer);
             }
             if (draggedFigure != null)
-                draggedFigure.Draw(renderer);
+                draggedFigure.Draw(Renderer);
         }
     }
 }

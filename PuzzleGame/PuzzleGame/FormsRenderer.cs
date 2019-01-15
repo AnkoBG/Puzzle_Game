@@ -36,7 +36,11 @@ namespace PuzzleGame
         public void DrawLine(Line line, Color color, int thickness = 3)
         {
             using (Pen pen = new Pen(color, thickness))
+            {
                 activeFormGfx.DrawLine(pen, line.Start.X, line.Start.Y, line.End.X, line.End.Y);
+            }
+                
+
         }
     }
 }

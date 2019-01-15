@@ -13,12 +13,11 @@ namespace PuzzleGameLibrary
     {
         public Vector2 Position { get; private set; }
         public int Size { get; private set; }
-        public Color Color { get; private set; }
         public bool IsEmpty { get; private set; }
 
-        public Cell(Vector2 position, int cellSize, bool isEmpty = false)
+        public Cell(Vector2 pos, int cellSize, bool isEmpty = false)
         {
-            Position = position;
+            Position = pos;
             Size = cellSize;
             IsEmpty = isEmpty;
         }
