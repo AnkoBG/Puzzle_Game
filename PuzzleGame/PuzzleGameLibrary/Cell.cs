@@ -8,10 +8,9 @@ using System.Drawing;
 
 namespace PuzzleGameLibrary
 {
-    internal class Cell
+    [Serializable]
+    public class Cell
     {
-        //TODO
-        
         public Vector2 Position { get; private set; }
         public int Size { get; private set; }
         public Color Color { get; private set; }
