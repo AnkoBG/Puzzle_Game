@@ -102,7 +102,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Menu";
-            this.Text = "Menu";
+            this.Text = "Puzzle Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 

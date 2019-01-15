@@ -41,9 +41,12 @@ namespace PuzzleGame
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Game g = new Game(levelsBox.SelectedItem.ToString());
-            g.Show();
-            Hide();
+            if(levelsBox.SelectedItem != null)
+            {
+                Game g = new Game(levelsBox.SelectedItem.ToString());
+                g.Show();
+                Hide();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

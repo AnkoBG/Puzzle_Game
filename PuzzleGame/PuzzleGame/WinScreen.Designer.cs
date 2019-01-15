@@ -74,7 +74,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "WinScreen";
-            this.Text = "Puzzle Game";
+            this.Text = "Win Screen";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WinScreen_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

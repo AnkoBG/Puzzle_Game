@@ -73,7 +73,6 @@ namespace PuzzleGameLibrary
 
         public void Flip()
         {
-            // Flips horizontally, I think it works now, but I've not tested it thoroughly
             if (Size.Y > 1)
             {
                 Cell[,] newCells = new Cell[Size.X, Size.Y];
