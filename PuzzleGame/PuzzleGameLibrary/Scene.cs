@@ -31,18 +31,18 @@ namespace PuzzleGameLibrary
         public Grid Grid { get; private set; }
         public Grid RightGrid { get; private set; }
 
-        Rectangle background;
+        Color background = Color.White;
 
         public Scene(string levelPath, Vector2 windowSize, IRenderer renderer)
         {
             Renderer = renderer;
-            Level = new Level(levelPath);
+            Level = new Level(levelPath, windowSize);
             Grid = Level.Grid;
             RightGrid = Level.RightGrid;
             placedFigures = Level.placedFigures;
             storedFigures = Level.storedFigures;
             selectedFigure = storedFigures[0];
-            background = new Rectangle(new Vector2(0, 0), windowSize);
+            Resize(windowSize);
         }
 
         public void KeyEvent(Key key, Vector2 mousePos)
@@ -199,9 +199,43 @@ namespace PuzzleGameLibrary
             }
         }
 
+        public void Resize(Vector2 windowSize)
+        {
+            int oldInterval = Grid.Interval;
+
+            Grid = Grid.ChangeSize(windowSize);
+            RightGrid = RightGrid.ChangeSize(windowSize, Grid.Interval);
+
+
+            foreach (Figure fig in placedFigures)
+            {
+                fig.Position = fig.Position / oldInterval * Grid.Interval;
+                for (int i = 0; i < fig.cells.GetLength(0); i++)
+                {
+                    for (int j = 0; j < fig.cells.GetLength(1); j++)
+                    {
+                        fig.cells[i, j] = new Cell(fig.cells[i, j].Position, Grid.Interval, fig.cells[i, j].IsEmpty);
+                    }
+                }
+            }
+
+            foreach (Figure fig in storedFigures)
+            {
+                fig.Position = RightGrid.Position;
+                for (int i = 0; i < fig.cells.GetLength(0); i++)
+                {
+                    for (int j = 0; j < fig.cells.GetLength(1); j++)
+                    {
+                        fig.cells[i, j] = new Cell(fig.cells[i, j].Position, Grid.Interval, fig.cells[i, j].IsEmpty);
+                    }
+                }
+            }
+            Draw();
+        }
+
         public void Draw()
         {
-            Renderer.DrawRectangle(background, Color.White, 3, true);
+            Renderer.Clear(background);
             Grid.Draw(Renderer);
             RightGrid.Draw(Renderer);
 

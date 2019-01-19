@@ -14,7 +14,8 @@ namespace PuzzleGame
         public Game(string levelPath)
         {
             InitializeComponent();
-            renderer = new FormsRenderer(CreateGraphics());
+            //DoubleBuffered = true;                Does not draw first frame for some reason
+            renderer = new FormsRenderer(this);
             scene = new Scene(levelPath, new Vector2(Width, Height), renderer);
         }
 
@@ -81,6 +82,16 @@ namespace PuzzleGame
         {
             if(e.CloseReason == CloseReason.UserClosing)
                 Application.Exit();
+        }
+
+        private void Game_Resize(object sender, EventArgs e)
+        {
+            //scene.Resize(new Vector2(Width, Height));
+        }
+
+        private void Game_Layout(object sender, LayoutEventArgs e)
+        {
+            scene.Resize(new Vector2(Width, Height));
         }
     }
 }

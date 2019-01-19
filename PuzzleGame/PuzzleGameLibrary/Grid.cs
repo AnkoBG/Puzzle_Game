@@ -50,5 +50,21 @@ namespace PuzzleGameLibrary
             }
         }
 
+        public Grid ChangeSize(Vector2 windowSize)
+        {
+            Interval = Math.Min((int)(windowSize.X * 2f / 3) / cellCount.X, (windowSize.Y - 40) / cellCount.Y);
+            GridSize = new Vector2(Interval * cellCount.X, Interval * cellCount.Y);
+
+            return this;
+        }
+
+        public Grid ChangeSize(Vector2 windowSize, int interval)
+        {
+            Interval = interval;
+            GridSize = new Vector2(Interval * cellCount.X, Interval * cellCount.Y);
+            Position = new Vector2(windowSize.X - GridSize.X, 0);
+
+            return this;
+        }
     }
 }
