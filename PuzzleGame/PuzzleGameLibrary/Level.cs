@@ -15,7 +15,7 @@ namespace PuzzleGameLibrary
         internal List<Figure> storedFigures = new List<Figure>(0);
         public Grid Grid { get; private set; }
         public Grid RightGrid { get; private set; }
-        public string Name { get; private set;}
+        public string Name { get; set;}
 
         //To be used for custom level creation
         public Level(string name, Grid grid, Grid rightGrid, List<Figure> _placedFigures, List<Figure> _storedFigures)

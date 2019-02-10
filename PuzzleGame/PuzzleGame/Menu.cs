@@ -26,6 +26,7 @@ namespace PuzzleGame
         {
             button1.Hide();
             button3.Hide();
+            button4.Hide();
             label1.Show();
             levelsBox.Show();
             button2.Show();
@@ -53,6 +54,16 @@ namespace PuzzleGame
         {
             Instructions instr = new Instructions();
             instr.ShowDialog(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("CurrLvl.bin"))
+            {
+                Game g = new Game("CurrLvl.bin");
+                g.Show();
+                Hide();
+            }
         }
     }
 }

@@ -88,6 +88,7 @@ namespace PuzzleGameLibrary
                     }
                     break;
                 case Key.F5:  //Meant for Continue function, currently overwrites current level savefile
+                    Level.Name = "CurrLvl";
                     Level.SerializeLevel();
                     break;
                 default:
