@@ -7,40 +7,53 @@ using System.Drawing;
 using PuzzleGameLibrary;
 using PuzzleGameLibrary.Interfaces;
 using Rectangle = PuzzleGameLibrary.Rectangle;
+using System.Windows.Forms;
 
 namespace PuzzleGame
 {
     class FormsRenderer : IRenderer
     {
-        Graphics activeFormGfx;
+        Form form;
 
-        public FormsRenderer(Graphics gfx)
+        public FormsRenderer(Form _form)
         {
-            activeFormGfx = gfx;
+            form = _form;
         }
 
 
         public void DrawRectangle(Rectangle rect, Color color, int thickness = 3, bool fill = false)
         {
-            if (!fill)
+            using (var gfx = form.CreateGraphics())
             {
-                using (Pen pen = new Pen(color, thickness))
-                    activeFormGfx.DrawRectangle(pen, rect.Position.X, rect.Position.Y, rect.Size.X, rect.Size.Y);
-            }
-            else
-            {
-                using (SolidBrush brush = new SolidBrush(color))
-                    activeFormGfx.FillRectangle(brush, rect.Position.X, rect.Position.Y, rect.Size.X, rect.Size.Y);
+                if (!fill)
+                {
+                    using (Pen pen = new Pen(color, thickness))
+                        gfx.DrawRectangle(pen, rect.Position.X, rect.Position.Y, rect.Size.X, rect.Size.Y);
+                }
+                else
+                {
+                    using (SolidBrush brush = new SolidBrush(color))
+                        gfx.FillRectangle(brush, rect.Position.X, rect.Position.Y, rect.Size.X, rect.Size.Y);
+                }
             }
         }
         public void DrawLine(Line line, Color color, int thickness = 3)
         {
-            using (Pen pen = new Pen(color, thickness))
+            using (var gfx = form.CreateGraphics())
             {
-                activeFormGfx.DrawLine(pen, line.Start.X, line.Start.Y, line.End.X, line.End.Y);
+                using (Pen pen = new Pen(color, thickness))
+                {
+                    gfx.DrawLine(pen, line.Start.X, line.Start.Y, line.End.X, line.End.Y);
+                }
             }
-                
+        }
 
+        public void Clear(Color background)
+        {
+            using (var gfx = form.CreateGraphics())
+            {
+                gfx.Clear(background);
+            }
         }
     }
 }

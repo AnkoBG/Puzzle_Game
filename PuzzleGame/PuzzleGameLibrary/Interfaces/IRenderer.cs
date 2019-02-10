@@ -10,7 +10,7 @@ namespace PuzzleGameLibrary.Interfaces
     public interface IRenderer
     {
         void DrawRectangle(Rectangle rect, Color color, int thickness = 3, bool fill = false);
-
+        void Clear(Color background);
         void DrawLine(Line line, Color color, int thickness = 3);
     }
 }

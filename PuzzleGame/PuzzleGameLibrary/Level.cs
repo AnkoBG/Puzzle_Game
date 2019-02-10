@@ -27,7 +27,7 @@ namespace PuzzleGameLibrary
             Name = name;
         }
 
-        public Level(string levelPath)
+        public Level(string levelPath, Vector2 windowSize)
         {
             Level newLevel = DeserializeLevel(levelPath);
             placedFigures = newLevel.placedFigures;
